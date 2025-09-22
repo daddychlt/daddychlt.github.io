@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,39 +26,83 @@
 
   <style>
     /* mobile-first tweaks */
-    html { scroll-behavior: smooth; }
-    .nav-active { color: #fbbf24; font-weight: 600; }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .nav-active {
+      color: #fbbf24;
+      font-weight: 600;
+    }
 
     /* mobile menu overlay */
-    #mobile-nav { transform: translateX(-110%); transition: transform .28s ease-in-out; }
-    #mobile-nav.open { transform: translateX(0); }
+    #mobile-nav {
+      transform: translateX(-110%);
+      transition: transform .28s ease-in-out;
+    }
+
+    #mobile-nav.open {
+      transform: translateX(0);
+    }
 
     /* simple print layout for CV */
     @media print {
-      :root { color-scheme: light; }
-      body { background: white !important; color: #000 !important; }
-      header, #mobile-nav, .no-print, .floating-contact, a[href]:after { display: none !important; }
-      section { page-break-inside: avoid; }
-      .container { width: 100%; padding: 0; }
+      :root {
+        color-scheme: light;
+      }
+
+      body {
+        background: white !important;
+        color: #000 !important;
+      }
+
+      header,
+      #mobile-nav,
+      .no-print,
+      .floating-contact,
+      a[href]:after {
+        display: none !important;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      .container {
+        width: 100%;
+        padding: 0;
+      }
     }
 
     /* small helper for svg button sizes */
-    .icon { width: 20px; height: 20px; display:inline-block; vertical-align:middle }
+    .icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle
+    }
   </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header (mobile-first) -->
   <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
     <div class="max-w-4xl mx-auto flex items-center justify-between px-4 py-3">
       <div class="flex items-center gap-3">
-        <button id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" class="md:hidden p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 transition">
+        <button id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false"
+          class="md:hidden p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 transition">
           <!-- hamburger -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
         </button>
         <a href="#" class="flex items-center gap-2">
           <!-- simple logo -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="3" />
+            <path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+          </svg>
           <span class="text-lg font-bold">Konan Phanuel</span>
         </a>
       </div>
@@ -73,14 +118,19 @@
 
       <div class="flex items-center gap-3">
         <!-- theme toggle -->
-        <button id="dark-toggle" aria-label="Basculer le thème" class="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 transition">
-          <span id="theme-icon">🌙</span>
-        </button>
 
         <!-- social icons (desktop) -->
         <div class="hidden md:flex items-center gap-3">
-          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600 hover:text-gray-900"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z"/></svg></a>
-          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn" class="text-blue-600 hover:text-blue-800"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z"/></svg></a>
+          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600 hover:text-gray-900"><svg
+              class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+            </svg></a>
+          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+            class="text-blue-600 hover:text-blue-800"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+            </svg></a>
         </div>
       </div>
     </div>
@@ -89,11 +139,17 @@
     <div id="mobile-nav" class="fixed inset-0 z-40 bg-white dark:bg-gray-900 p-6 md:hidden no-print" aria-hidden="true">
       <div class="flex items-center justify-between mb-6">
         <div class="flex items-center gap-3">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="3" />
+            <path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+          </svg>
           <span class="font-bold">Konan Phanuel</span>
         </div>
-        <button id="mobile-close" aria-label="Fermer le menu" class="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button id="mobile-close" aria-label="Fermer le menu"
+          class="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
@@ -107,20 +163,32 @@
 
       <div class="mt-6 border-t pt-4 flex items-center justify-between">
         <div class="flex gap-3">
-          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z"/></svg></a>
-          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn" class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z"/></svg></a>
+          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+            </svg></a>
+          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+            class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+            </svg></a>
         </div>
 
-        <a href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank" class="bg-blue-600 text-white px-3 py-2 rounded-md">Télécharger CV</a>
+        <a href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank"
+          class="bg-blue-600 text-white px-3 py-2 rounded-md">Télécharger CV</a>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
   <section class="text-center py-12 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-    <h2 class="text-2xl sm:text-4xl font-bold mb-2">Salut, je suis <span class="text-yellow-300">Konan Phanuel Élie Ahué</span></h2>
+    <h2 class="text-2xl sm:text-4xl font-bold mb-2">Salut, je suis <span class="text-yellow-300">Konan Phanuel Élie
+        Ahué</span></h2>
     <p id="role" class="text-base sm:text-lg mb-4">Développeur Web & Mobile</p>
-    <a href="#projects" class="bg-yellow-300 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition transform hover:scale-105 inline-block animate-float">Voir mes projets</a>
+    <a href="#projects"
+      class="bg-yellow-300 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition transform hover:scale-105 inline-block animate-float">Voir
+      mes projets</a>
   </section>
 
   <!-- About -->
@@ -128,9 +196,12 @@
     <section id="about" class="py-8">
       <h3 class="text-xl font-bold mb-3 text-center">À propos de moi</h3>
       <p class="text-center text-sm sm:text-base max-w-2xl mx-auto">
-        Développeur en fin de cycle de Licence Informatique - Génie Logiciel, passionné par la création de solutions logicielles innovantes. 
-        J’ai participé à des projets concrets tels qu’une <b>application d’archivage numérique</b> et une <b>plateforme de vote en ligne</b> durant mon stage chez Digital Communication and Technology. 
-        Je m’intéresse également à l’<b>intelligence artificielle</b>, que je pratique avec Python à travers des projets personnels de machine learning.
+        Développeur en fin de cycle de Licence Informatique - Génie Logiciel, passionné par la création de solutions
+        logicielles innovantes.
+        J’ai participé à des projets concrets tels qu’une <b>application d’archivage numérique</b> et une <b>plateforme
+          de vote en ligne</b> durant mon stage chez Digital Communication and Technology.
+        Je m’intéresse également à l’<b>intelligence artificielle</b>, que je pratique avec Python à travers des projets
+        personnels de machine learning.
       </p>
     </section>
 
@@ -140,27 +211,45 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">Python</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0">
+            </div>
+          </div>
         </div>
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">Php</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0">
+            </div>
+          </div>
         </div>
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">JavaScript / Alpine JS</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="85" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="85" style="width:0">
+            </div>
+          </div>
         </div>
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">Laravel / Livewire</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="80" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="80" style="width:0">
+            </div>
+          </div>
         </div>
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">IA / Data</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0">
+            </div>
+          </div>
         </div>
         <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
           <h4 class="font-semibold mb-2">Kivy / KivyMD</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden"><div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0"></div></div>
+          <div class="h-2 bg-gray-200 rounded overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -172,24 +261,30 @@
         <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h4 class="font-semibold">Application d’archivage numérique</h4>
           <p class="text-sm mt-2">Gestion et archivage de documents, recherche MeiliSearch, roles/permissions.</p>
-          <a href="https://github.com/daddychlt/Application-Web-Archivages" class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
+          <a href="https://github.com/daddychlt/Application-Web-Archivages"
+            class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
         </article>
         <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h4 class="font-semibold">Plateforme de vote à distance</h4>
           <p class="text-sm mt-2">Sécurisation, Laravel, Livewire, MySQL.</p>
-          <a href="https://github.com/daddychlt/Vote-plateforme" class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
+          <a href="https://github.com/daddychlt/Vote-plateforme" class="text-blue-600 hover:underline text-sm">Voir sur
+            GitHub</a>
         </article>
         <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h4 class="font-semibold">Projet d'école IA - Prédiction avec Python</h4>
-          <p class="text-sm mt-2">Développement d’un modèle de machine learning (Scikit-learn, Pandas, NumPy, Tensorflow, StreamLit) capable de 
-          classer des véhicules en catégorie puis les associer a des clients sélectionnes par 
-          un service marketing qui pourrait mieux les intéresser pour la prédiction de données.</p>
-          <a href="https://github.com/daddychlt/Projet-IA-Python.git" class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
+          <p class="text-sm mt-2">Développement d’un modèle de machine learning (Scikit-learn, Pandas, NumPy,
+            Tensorflow, StreamLit) capable de
+            classer des véhicules en catégorie puis les associer a des clients sélectionnes par
+            un service marketing qui pourrait mieux les intéresser pour la prédiction de données.</p>
+          <a href="https://github.com/daddychlt/Projet-IA-Python.git" class="text-blue-600 hover:underline text-sm">Voir
+            sur GitHub</a>
         </article>
         <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
           <h4 class="font-semibold">Jedemo</h4>
-          <p class="text-sm mt-2">Jeu mobile éducatif en Python destiné à enrichir le vocabulaire et l'ortographe grâce à des défis de mots et des enigmes.</p>
-          <a href="https://github.com/daddychlt/Jedemo_app" class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
+          <p class="text-sm mt-2">Jeu mobile éducatif en Python destiné à enrichir le vocabulaire et l'ortographe grâce
+            à des défis de mots et des enigmes.</p>
+          <a href="https://github.com/daddychlt/Jedemo_app" class="text-blue-600 hover:underline text-sm">Voir sur
+            GitHub</a>
         </article>
       </div>
     </section>
@@ -212,19 +307,30 @@
     <!-- Contact -->
     <section id="contact" class="py-8 text-center">
       <h3 class="text-lg font-bold mb-3">Contact</h3>
-      <p class="text-sm">Email : <a class="text-blue-600" href="mailto:ahuekonan28pe@gmail.com">ahuekonan28pe@gmail.com</a></p>
+      <p class="text-sm">Email : <a class="text-blue-600"
+          href="mailto:ahuekonan28pe@gmail.com">ahuekonan28pe@gmail.com</a></p>
       <p class="text-sm">Tél : <span class="font-semibold">+225 05 07 34 97 55</span></p>
       <div class="mt-4 flex items-center justify-center gap-3">
-        <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z"/></svg></a>
-        <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn" class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z"/></svg></a>
-        <a class="bg-blue-600 text-white px-3 py-2 rounded-md" href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank">Télécharger CV</a>
+        <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon"
+            viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+          </svg></a>
+        <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+          class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+          </svg></a>
+        <a class="bg-blue-600 text-white px-3 py-2 rounded-md" href="CV - AHUE KONAN PHANUEL ELIE.pdf"
+          target="_blank">Télécharger CV</a>
       </div>
     </section>
 
   </main>
 
   <!-- Floating contact button -->
-  <a href="#contact" class="floating-contact fixed right-4 bottom-4 bg-yellow-300 text-gray-900 px-4 py-2 rounded-full shadow-lg hover:scale-105 transition no-print">Contact</a>
+  <a href="#contact"
+    class="floating-contact fixed right-4 bottom-4 bg-yellow-300 text-gray-900 px-4 py-2 rounded-full shadow-lg hover:scale-105 transition no-print">Contact</a>
 
   <footer class="text-center py-6 text-sm mt-8">
     <p>© 2025 Konan Phanuel Élie Ahué</p>
@@ -242,19 +348,7 @@
     mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
     document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-    // theme (detect + persist)
-    const root = document.documentElement;
-    const themeIcon = document.getElementById('theme-icon');
-    const saved = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (saved === 'dark' || (!saved && systemPrefersDark)) root.classList.add('dark');
-    const updateIcon = () => themeIcon.textContent = root.classList.contains('dark') ? '☀️' : '🌙';
-    updateIcon();
-    document.getElementById('dark-toggle').addEventListener('click', () => {
-      root.classList.toggle('dark');
-      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
-      updateIcon();
-    });
+    // theme toggle removed (logic and UI removed as requested)
 
     // ScrollReveal for elements with .reveal
     if (window.ScrollReveal) {
@@ -286,5 +380,7 @@
       setTimeout(() => { roleEl.textContent = roles[idx]; roleEl.classList.remove('opacity-0'); }, 250);
     }, 4000);
   </script>
+
 </body>
+
 </html>

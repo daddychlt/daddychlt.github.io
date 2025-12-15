@@ -1,385 +1,506 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Konan Phanuel Élie Ahué</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/scrollreveal"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo_kp.png">
+    <link rel="apple-touch-icon" href="logo_kp.png">
+    <title>Portfolio - Konan Phanuel Élie Ahué | Développeur Web & Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
 
-  <script>
-    // Tailwind config: class dark mode
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: { accent: '#fbbf24' },
-          keyframes: {
-            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } }
-          },
-          animation: { float: 'float 3s ease-in-out infinite' }
+    <script>
+        // Configuration Tailwind personnalisée
+        tailwind.config = {
+            darkMode: 'class', // Maintenu pour la flexibilité
+            theme: {
+                extend: {
+                    colors: {
+                        // Changement de la couleur d'accent pour un look plus moderne
+                        accent: '#14b8a6', // Teal 500
+                        'dark-bg': '#0f172a', // Slate 900
+                        'dark-card': '#1e293b', // Slate 800
+                    },
+                    keyframes: {
+                        // Légère modification pour le bouton flottant
+                        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+                        pulseAccent: {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 0 0 rgba(20, 184, 166, 0.7)' },
+                            '50%': { opacity: 0.8, boxShadow: '0 0 0 10px rgba(20, 184, 166, 0)' }
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite',
+                        pulseAccent: 'pulseAccent 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 5s linear infinite',
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
+    </script>
 
-  <style>
-    /* mobile-first tweaks */
-    html {
-      scroll-behavior: smooth;
-    }
+    <style>
+        /* mobile menu overlay */
+        #mobile-nav {
+            transform: translateX(-110%);
+            transition: transform .3s ease-in-out;
+        }
 
-    .nav-active {
-      color: #fbbf24;
-      font-weight: 600;
-    }
+        #mobile-nav.open {
+            transform: translateX(0);
+        }
 
-    /* mobile menu overlay */
-    #mobile-nav {
-      transform: translateX(-110%);
-      transition: transform .28s ease-in-out;
-    }
+        /* simple print layout for CV (gardé pour le pro) */
+        @media print {
+            :root {
+                color-scheme: light;
+            }
 
-    #mobile-nav.open {
-      transform: translateX(0);
-    }
+            body {
+                background: white !important;
+                color: #000 !important;
+            }
 
-    /* simple print layout for CV */
-    @media print {
-      :root {
-        color-scheme: light;
-      }
+            header,
+            #mobile-nav,
+            .no-print,
+            .floating-contact,
+            a[href]:after {
+                display: none !important;
+            }
 
-      body {
-        background: white !important;
-        color: #000 !important;
-      }
+            section {
+                page-break-inside: avoid;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
 
-      header,
-      #mobile-nav,
-      .no-print,
-      .floating-contact,
-      a[href]:after {
-        display: none !important;
-      }
+            .container {
+                width: 100%;
+                padding: 0;
+            }
+        }
 
-      section {
-        page-break-inside: avoid;
-      }
+        /* small helper for svg button sizes */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle
+        }
 
-      .container {
-        width: 100%;
-        padding: 0;
-      }
-    }
-
-    /* small helper for svg button sizes */
-    .icon {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
-      vertical-align: middle
-    }
-  </style>
+        /* Style pour l'effet "glitch" sur le titre - Fun touch */
+        .glitch {
+            position: relative;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-dark-bg text-gray-200 dark">
 
-  <!-- Header (mobile-first) -->
-  <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-    <div class="max-w-4xl mx-auto flex items-center justify-between px-4 py-3">
-      <div class="flex items-center gap-3">
-        <button id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false"
-          class="md:hidden p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 transition">
-          <!-- hamburger -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <a href="#" class="flex items-center gap-2">
-          <!-- simple logo -->
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="8" r="3" />
-            <path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
-          </svg>
-          <span class="text-lg font-bold">Konan Phanuel</span>
+    <header class="bg-dark-bg/95 backdrop-blur-sm shadow-xl sticky top-0 z-50 border-b border-gray-700/50">
+        <div class="max-w-4xl mx-auto flex items-center justify-between px-4 py-4">
+            <div class="flex items-center gap-3">
+                <button id="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false"
+                    class="md:hidden p-2 rounded-lg text-accent hover:bg-gray-700 transition">
+                    <svg class="icon w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="#" class="flex items-center gap-2 text-xl font-extrabold text-accent">
+                    <svg class="icon w-6 h-6 animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                    <span>Phanuel.dev</span>
+                </a>
+            </div>
+
+            <nav id="main-nav" class="hidden md:flex gap-8 items-center text-sm font-medium">
+                <a href="#about"
+                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">À propos</a>
+                <a href="#skills"
+                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Compétences</a>
+                <a href="#projects"
+                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Projets</a>
+                <a href="#experience"
+                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Expérience</a>
+                <a href="#contact"
+                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://github.com/daddychlt" aria-label="GitHub"
+                    class="text-gray-400 hover:text-white hover:scale-110 transition"><svg class="icon w-6 h-6"
+                        viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+                    </svg></a>
+                <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+                    class="text-blue-500 hover:text-blue-400 hover:scale-110 transition"><svg class="icon w-6 h-6"
+                        viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+                    </svg></a>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="fixed inset-0 z-40 bg-dark-bg p-6 md:hidden no-print" aria-hidden="true">
+            <div class="flex items-center justify-between mb-8">
+                <span class="font-bold text-xl text-accent">Phanuel.dev</span>
+                <button id="mobile-close" aria-label="Fermer le menu"
+                    class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 text-gray-200">
+                    <svg class="icon w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="flex flex-col gap-5 text-xl font-semibold">
+                <a href="#about" class="block hover:text-accent transition">À propos</a>
+                <a href="#skills" class="block hover:text-accent transition">Compétences</a>
+                <a href="#projects" class="block hover:text-accent transition">Projets</a>
+                <a href="#experience" class="block hover:text-accent transition">Expérience</a>
+                <a href="#contact" class="block hover:text-accent transition">Contact</a>
+            </nav>
+
+            <div class="mt-10 pt-6 border-t border-gray-700/50 flex items-center justify-between">
+                <div class="flex gap-4">
+                    <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-400"><svg
+                            class="icon w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+                        </svg></a>
+                    <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+                        class="text-blue-500"><svg class="icon w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+                        </svg></a>
+                </div>
+
+                <a href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank"
+                    class="bg-accent text-dark-bg font-semibold px-4 py-2 rounded-full hover:bg-teal-400 transition transform hover:scale-105">Télécharger
+                    CV</a>
+            </div>
+        </div>
+    </header>
+
+    <section
+        class="text-center py-20 px-4 bg-gray-900 border-b border-gray-700/50 relative overflow-hidden flex flex-col items-center justify-center">
+
+        <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PHJlY3QgZmlsbD0nIzAwMDAnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJy8+PHBhdGggZmlsbD0nI2YwZjBmMHgnIGQ9J00yNSAwTDEwMCA3NVYyNUw3NSAwSDI1ek0wIDc1TDEwMCAxNzVWMTAwTDEwMCA3NVYyNUwwIDEyNUwyNSAxMDBaJyBvcGFjaXR5PScwLjA1Jy8+PC9zdmc+')]"
+            style="background-size: 20px 20px;"></div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold mb-4 glitch relative z-10">
+            👋 Je suis <span class="text-accent relative">Konan Phanuel</span>
+        </h1>
+        <p id="role"
+            class="text-lg sm:text-2xl mb-8 text-gray-400 font-light relative z-10 min-h-[30px] transition-opacity duration-300">
+            Développeur Web & Mobile</p>
+        <a href="#projects"
+            class="bg-accent text-dark-bg font-bold px-8 py-3 rounded-full shadow-lg hover:bg-teal-400 transition duration-300 transform hover:scale-[1.02] inline-block animate-pulseAccent relative z-10">
+            Démarrer l'exploration 🚀
         </a>
-      </div>
-
-      <!-- Desktop nav -->
-      <nav id="main-nav" class="hidden md:flex gap-6 items-center text-sm">
-        <a href="#about" class="hover:text-blue-500 transition">À propos</a>
-        <a href="#skills" class="hover:text-blue-500 transition">Compétences</a>
-        <a href="#projects" class="hover:text-blue-500 transition">Projets</a>
-        <a href="#experience" class="hover:text-blue-500 transition">Expérience</a>
-        <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <!-- theme toggle -->
-
-        <!-- social icons (desktop) -->
-        <div class="hidden md:flex items-center gap-3">
-          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600 hover:text-gray-900"><svg
-              class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
-            </svg></a>
-          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
-            class="text-blue-600 hover:text-blue-800"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
-            </svg></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile nav overlay -->
-    <div id="mobile-nav" class="fixed inset-0 z-40 bg-white dark:bg-gray-900 p-6 md:hidden no-print" aria-hidden="true">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="12" cy="8" r="3" />
-            <path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
-          </svg>
-          <span class="font-bold">Konan Phanuel</span>
-        </div>
-        <button id="mobile-close" aria-label="Fermer le menu"
-          class="p-2 rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      <nav class="flex flex-col gap-4 text-lg">
-        <a href="#about" class="block">À propos</a>
-        <a href="#skills" class="block">Compétences</a>
-        <a href="#projects" class="block">Projets</a>
-        <a href="#experience" class="block">Expérience</a>
-        <a href="#contact" class="block">Contact</a>
-      </nav>
-
-      <div class="mt-6 border-t pt-4 flex items-center justify-between">
-        <div class="flex gap-3">
-          <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon"
-              viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
-            </svg></a>
-          <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
-            class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
-            </svg></a>
-        </div>
-
-        <a href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank"
-          class="bg-blue-600 text-white px-3 py-2 rounded-md">Télécharger CV</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="text-center py-12 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-    <h2 class="text-2xl sm:text-4xl font-bold mb-2">Salut, je suis <span class="text-yellow-300">Konan Phanuel Élie
-        Ahué</span></h2>
-    <p id="role" class="text-base sm:text-lg mb-4">Développeur Web & Mobile</p>
-    <a href="#projects"
-      class="bg-yellow-300 text-gray-900 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition transform hover:scale-105 inline-block animate-float">Voir
-      mes projets</a>
-  </section>
-
-  <!-- About -->
-  <main class="max-w-4xl mx-auto px-4">
-    <section id="about" class="py-8">
-      <h3 class="text-xl font-bold mb-3 text-center">À propos de moi</h3>
-      <p class="text-center text-sm sm:text-base max-w-2xl mx-auto">
-        Développeur en fin de cycle de Licence Informatique - Génie Logiciel, passionné par la création de solutions
-        logicielles innovantes.
-        J’ai participé à des projets concrets tels qu’une <b>application d’archivage numérique</b> et une <b>plateforme
-          de vote en ligne</b> durant mon stage chez Digital Communication and Technology.
-        Je m’intéresse également à l’<b>intelligence artificielle</b>, que je pratique avec Python à travers des projets
-        personnels de machine learning.
-      </p>
     </section>
 
-    <!-- Skills -->
-    <section id="skills" class="py-8">
-      <h3 class="text-lg font-bold mb-4 text-center">Compétences</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Python</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0">
+    <main class="max-w-4xl mx-auto px-4">
+
+        <section id="about" class="py-16 reveal">
+            <h2 class="text-3xl font-bold mb-6 text-center text-white">À propos de moi</h2>
+            <div class="max-w-3xl mx-auto bg-dark-card p-6 md:p-8 rounded-xl shadow-2xl border-l-4 border-accent/70">
+                <p class="text-base text-gray-300 leading-relaxed text-justify">
+                    Développeur Web & Mobile **orienté produit**, spécialisé dans la conception de solutions digitales
+                    utiles et monétisables. J’ai travaillé sur des applications B2B et grand public, notamment une
+                    application de facturation (**EasyFact**), une plateforme d’archivage numérique et des projets
+                    intégrant l’**Intelligence Artificielle**.
+                    Mon objectif est de construire des produits adaptés aux réalités du marché africain, avec une approche
+                    pragmatique **MVP → traction → amélioration continue**.
+                </p>
             </div>
-          </div>
-        </div>
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Php</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="90" style="width:0">
+            <hr class="mt-16 border-gray-700/50">
+        </section>
+
+
+        <section id="skills" class="py-16">
+            <h2 class="text-3xl font-bold mb-10 text-center text-white">⚙️ Ma boîte à outils technique</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                <div class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-accent/50 transition duration-300">
+                    <h4 class="font-bold mb-3 text-lg text-accent">Backend & Frameworks</h4>
+                    <ul class="space-y-3">
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Python (90%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="90" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Laravel / Livewire (80%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="80" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Php (90%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="90" style="width:0"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-accent/50 transition duration-300"
+                    data-sr-interval="120">
+                    <h4 class="font-bold mb-3 text-lg text-accent">Frontend & Mobile</h4>
+                    <ul class="space-y-3">
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">JavaScript / Alpine JS (85%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="85" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Tailwind CSS / UI/UX (95%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="95" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Kivy / KivyMD (82%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="82" style="width:0"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-accent/50 transition duration-300"
+                    data-sr-interval="160">
+                    <h4 class="font-bold mb-3 text-lg text-accent">Data & Outils</h4>
+                    <ul class="space-y-3">
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">IA / Data Science (82%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="82" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">MySQL / PostgreSQL (78%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="78" style="width:0"></div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Git / Docker (75%)</span>
+                            <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
+                                <div class="h-full bg-accent skill-bar" data-level="75" style="width:0"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-          </div>
-        </div>
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">JavaScript / Alpine JS</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="85" style="width:0">
+            <hr class="mt-16 border-gray-700/50">
+        </section>
+
+        <section id="projects" class="py-16">
+            <h2 class="text-3xl font-bold mb-10 text-center text-white">🛠️ Mes Réalisations (Projets Clés)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <article
+                    class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-accent hover:shadow-accent/30 transition duration-300">
+                    <h4 class="font-extrabold text-xl text-white flex items-center gap-2">EasyFact
+                        <span class="text-sm font-normal text-gray-400">— Facturation Mobile</span>
+                    </h4>
+                    <p class="text-sm mt-3 text-gray-400">
+                        Application mobile de facturation destinée aux prestataires, entrepreneurs et PME. Gestion
+                        complète des documents (factures/devis), export PDF rapide, et suivi précis des paiements.
+                    </p>
+                    <p class="text-xs mt-3 text-gray-500 font-mono">
+                        Stack : **Flutter**, Firebase
+                    </p>
+                    <div class="mt-4 flex gap-4">
+                        <a href="https://easyfact-c4315-115d6.web.app/" target="_blank"
+                            class="text-accent hover:text-teal-400 font-semibold text-sm flex items-center gap-1 transition">
+                            Voir le site
+                            <svg class="icon w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article
+                    class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-blue-500 hover:shadow-blue-500/30 transition duration-300"
+                    data-sr-delay="150">
+                    <h4 class="font-extrabold text-xl text-white">SIC-CI-POS</h4>
+                    <p class="text-sm mt-3 text-gray-400">
+                        Système de caisse (Point of Sale) pour les commerces. Interface optimisée pour la gestion des
+                        ventes, produits, stocks et utilisateurs. Conçu pour l'efficacité des transactions quotidiennes.
+                    </p>
+                    <p class="text-xs mt-3 text-gray-500 font-mono">
+                        Stack : **Laravel**, Livewire, MySQL, Tailwind CSS
+                    </p>
+                    <div class="mt-4 flex gap-4">
+                        <a href="#" class="text-blue-500 hover:text-blue-400 font-semibold text-sm transition">Démo</a>
+                        <a href="#" class="text-blue-500 hover:text-blue-400 font-semibold text-sm transition">Code
+                            source</a>
+                    </div>
+                </article>
+
+                <article
+                    class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-purple-500 hover:shadow-purple-500/30 transition duration-300">
+                    <h4 class="font-extrabold text-xl text-white">Archivage Numérique B2B</h4>
+                    <p class="text-sm mt-3 text-gray-400">
+                        Application web d’archivage et de gestion documentaire pour DCTC. Fonctionnalités clés :
+                        indexation avancée, recherche full-text ultra-rapide (**MeiliSearch**), et gestion granulaire
+                        des permissions.
+                    </p>
+                    <p class="text-xs mt-3 text-gray-500 font-mono">
+                        Stack : Laravel, Livewire, MeiliSearch
+                    </p>
+                </article>
+
+                <article
+                    class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-red-500 hover:shadow-red-500/30 transition duration-300"
+                    data-sr-delay="150">
+                    <h4 class="font-extrabold text-xl text-white">Plateforme de Vote Sécurisé</h4>
+                    <p class="text-sm mt-3 text-gray-400">
+                        Développement d'une plateforme de vote à distance axée sur la **sécurité** et la fiabilité.
+                        Assure l'intégrité et la confidentialité des scrutins.
+                    </p>
+                    <p class="text-xs mt-3 text-gray-500 font-mono">
+                        Stack : Laravel, Livewire, MySQL
+                    </p>
+                </article>
+
             </div>
-          </div>
-        </div>
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Laravel / Livewire</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="80" style="width:0">
+            <hr class="mt-16 border-gray-700/50">
+        </section>
+
+        <section id="experience" class="py-16">
+            <h2 class="text-3xl font-bold mb-10 text-center text-white">💼 Parcours (Expérience & Formation)</h2>
+            <div class="space-y-6">
+                <div class="bg-dark-card p-5 rounded-xl shadow-xl reveal border-l-4 border-accent/70 hover:scale-[1.01] transition duration-300">
+                    <h4 class="font-semibold text-lg text-white flex justify-between items-start">
+                        Stage Développeur Web <span class="text-sm text-gray-400 font-normal">Oct 2024 - Fév 2025</span>
+                    </h4>
+                    <p class="text-sm mt-1 text-gray-300 font-bold">Digital Communication and Technology (DCTC)</p>
+                    <p class="text-sm mt-2 text-gray-400">
+                        Implémentation d'applications B2B basées sur **Laravel** et **MySQL**. Maîtrise des cycles de
+                        développement et des procédures de déploiement sécurisé.
+                    </p>
+                </div>
+                <div class="bg-dark-card p-5 rounded-xl shadow-xl reveal border-l-4 border-blue-500/70 hover:scale-[1.01] transition duration-300"
+                    data-sr-delay="150">
+                    <h4 class="font-semibold text-lg text-white flex justify-between items-start">
+                        Licence Informatique - Génie Logiciel <span class="text-sm text-gray-400 font-normal">2021 -
+                            2025</span>
+                    </h4>
+                    <p class="text-sm mt-1 text-gray-300 font-bold">Université de Technologie d’Abidjan (UTA)</p>
+                    <p class="text-sm mt-2 text-gray-400">
+                        Acquisition de bases solides en algorithmique, structure de données, développement logiciel et
+                        méthodologies agiles.
+                    </p>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">IA / Data</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0">
+            <hr class="mt-16 border-gray-700/50">
+        </section>
+
+        <section id="contact" class="py-16 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-white">📬 Entrons en contact !</h2>
+            <p class="text-base mb-8 text-gray-400 max-w-xl mx-auto">
+                Vous avez un projet innovant ou une opportunité de collaboration ? Je serais ravi d'en discuter.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+                <a class="text-lg text-accent hover:text-teal-400 transition"
+                    href="mailto:ahuekonan28pe@gmail.com">ahuekonan28pe@gmail.com</a>
+                <span class="text-lg text-gray-300 font-bold">+225 05 07 34 97 55</span>
             </div>
-          </div>
-        </div>
-        <div class="reveal p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Kivy / KivyMD</h4>
-          <div class="h-2 bg-gray-200 rounded overflow-hidden">
-            <div class="h-2 bg-gradient-to-r from-blue-500 to-indigo-600 skill-bar" data-level="82" style="width:0">
+
+            <div class="mt-4 flex items-center justify-center gap-6">
+                <a href="https://github.com/daddychlt" aria-label="GitHub"
+                    class="text-gray-400 hover:text-white hover:scale-125 transition"><svg class="icon w-8 h-8"
+                        viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
+                    </svg></a>
+                <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
+                    class="text-blue-500 hover:text-blue-400 hover:scale-125 transition"><svg class="icon w-8 h-8"
+                        viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
+                    </svg></a>
+                <a class="bg-accent text-dark-bg px-5 py-3 rounded-full font-bold hover:bg-teal-400 transition transform hover:scale-105"
+                    href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank">Télécharger CV</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Projects -->
-    <section id="projects" class="py-8">
-      <h3 class="text-lg font-bold mb-4 text-center">Projets</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-          <h4 class="font-semibold">Application d’archivage numérique</h4>
-          <p class="text-sm mt-2">Gestion et archivage de documents, recherche MeiliSearch, roles/permissions.</p>
-          <a href="https://github.com/daddychlt/Application-Web-Archivages"
-            class="text-blue-600 hover:underline text-sm">Voir sur GitHub</a>
-        </article>
-        <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-          <h4 class="font-semibold">Plateforme de vote à distance</h4>
-          <p class="text-sm mt-2">Sécurisation, Laravel, Livewire, MySQL.</p>
-          <a href="https://github.com/daddychlt/Vote-plateforme" class="text-blue-600 hover:underline text-sm">Voir sur
-            GitHub</a>
-        </article>
-        <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-          <h4 class="font-semibold">Projet d'école IA - Prédiction avec Python</h4>
-          <p class="text-sm mt-2">Développement d’un modèle de machine learning (Scikit-learn, Pandas, NumPy,
-            Tensorflow, StreamLit) capable de
-            classer des véhicules en catégorie puis les associer a des clients sélectionnes par
-            un service marketing qui pourrait mieux les intéresser pour la prédiction de données.</p>
-          <a href="https://github.com/daddychlt/Projet-IA-Python.git" class="text-blue-600 hover:underline text-sm">Voir
-            sur GitHub</a>
-        </article>
-        <article class="reveal bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-          <h4 class="font-semibold">Jedemo</h4>
-          <p class="text-sm mt-2">Jeu mobile éducatif en Python destiné à enrichir le vocabulaire et l'ortographe grâce
-            à des défis de mots et des enigmes.</p>
-          <a href="https://github.com/daddychlt/Jedemo_app" class="text-blue-600 hover:underline text-sm">Voir sur
-            GitHub</a>
-        </article>
-      </div>
-    </section>
+    </main>
 
-    <!-- Experience -->
-    <section id="experience" class="py-8">
-      <h3 class="text-lg font-bold mb-4 text-center">Expérience & Formation</h3>
-      <div class="space-y-3">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow reveal">
-          <h4 class="font-semibold">Stage Développeur Web — Digital Communication and Technology</h4>
-          <p class="text-sm mt-1">Oct 2024 - Fév 2025. Laravel, MySQL, déploiement.</p>
-        </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow reveal">
-          <h4 class="font-semibold">Licence Informatique - Génie Logiciel</h4>
-          <p class="text-sm mt-1">Université de Technologie d’Abidjan (2021 - 2025)</p>
-        </div>
-      </div>
-    </section>
+    <a href="#contact"
+        class="floating-contact fixed right-4 bottom-4 bg-accent text-dark-bg font-semibold px-4 py-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 no-print z-40">Dites
+        coucou 👋</a>
 
-    <!-- Contact -->
-    <section id="contact" class="py-8 text-center">
-      <h3 class="text-lg font-bold mb-3">Contact</h3>
-      <p class="text-sm">Email : <a class="text-blue-600"
-          href="mailto:ahuekonan28pe@gmail.com">ahuekonan28pe@gmail.com</a></p>
-      <p class="text-sm">Tél : <span class="font-semibold">+225 05 07 34 97 55</span></p>
-      <div class="mt-4 flex items-center justify-center gap-3">
-        <a href="https://github.com/daddychlt" aria-label="GitHub" class="text-gray-600"><svg class="icon"
-            viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 .5C5.7.5.9 5.2.9 11.5c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.8c-2.9.6-3.6-1.2-3.6-1.2-.5-1.3-1.2-1.6-1.2-1.6-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.4 1.1 3 .8.1-.6.4-1.1.8-1.4-2.3-.3-4.7-1.2-4.7-5.3 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.4.1-2.8 0 0 .9-.3 3 .9.9-.2 1.9-.3 2.9-.3s2 .1 2.9.3c2.1-1.2 3-.9 3-.9.6 1.4.2 2.5.1 2.8.7.8 1.1 1.8 1.1 3 0 4.1-2.4 5-4.7 5.3.4.4.8 1 .8 2v3c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C23.1 5.2 18.3.5 12 .5z" />
-          </svg></a>
-        <a href="https://linkedin.com/in/konan-phanuel-élie-ahué-903293271" aria-label="LinkedIn"
-          class="text-blue-600"><svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
-          </svg></a>
-        <a class="bg-blue-600 text-white px-3 py-2 rounded-md" href="CV - AHUE KONAN PHANUEL ELIE.pdf"
-          target="_blank">Télécharger CV</a>
-      </div>
-    </section>
+    <footer class="text-center py-6 text-sm mt-8 border-t border-gray-700/50 text-gray-500">
+        <p>© 2025 Konan Phanuel Élie Ahué - Développé avec ❤️ et <span class="text-accent">Tailwind CSS</span>.</p>
+    </footer>
 
-  </main>
-
-  <!-- Floating contact button -->
-  <a href="#contact"
-    class="floating-contact fixed right-4 bottom-4 bg-yellow-300 text-gray-900 px-4 py-2 rounded-full shadow-lg hover:scale-105 transition no-print">Contact</a>
-
-  <footer class="text-center py-6 text-sm mt-8">
-    <p>© 2025 Konan Phanuel Élie Ahué</p>
-  </footer>
-
-  <script>
-    // mobile menu
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileClose = document.getElementById('mobile-close');
-    menuBtn.addEventListener('click', () => {
-      const open = mobileNav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', open);
-    });
-    mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
-    document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
-
-    // theme toggle removed (logic and UI removed as requested)
-
-    // ScrollReveal for elements with .reveal
-    if (window.ScrollReveal) {
-      ScrollReveal().reveal('.reveal', { duration: 700, origin: 'bottom', distance: '20px', interval: 80 });
-    }
-
-    // skill bar animation
-    document.querySelectorAll('.skill-bar').forEach(el => {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const level = el.dataset.level || 70;
-            el.style.width = level + '%';
-            el.style.transition = 'width 1000ms cubic-bezier(.2,.8,.2,1)';
-            io.unobserve(el);
-          }
+    <script>
+        // mobile menu logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileClose = document.getElementById('mobile-close');
+        menuBtn.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('open');
+            menuBtn.setAttribute('aria-expanded', open);
         });
-      }, { threshold: 0.3 });
-      io.observe(el);
-    });
+        mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+        document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-    // simple role rotator
-    const roles = ['Développeur Web & Mobile', 'Praticien Python IA', "Passionné par l'UX & Tailwind"];
-    let idx = 0;
-    const roleEl = document.getElementById('role');
-    setInterval(() => {
-      idx = (idx + 1) % roles.length;
-      roleEl.classList.add('opacity-0');
-      setTimeout(() => { roleEl.textContent = roles[idx]; roleEl.classList.remove('opacity-0'); }, 250);
-    }, 4000);
-  </script>
+        // ScrollReveal: Légèrement ajusté pour un effet plus subtil
+        if (window.ScrollReveal) {
+            ScrollReveal().reveal('.reveal', { duration: 800, origin: 'bottom', distance: '15px', scale: 1, interval: 100, reset: true });
+        }
+
+        // skill bar animation
+        document.querySelectorAll('.skill-bar').forEach(el => {
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const level = el.dataset.level || 70;
+                        el.style.width = level + '%';
+                        el.style.transition = 'width 1000ms cubic-bezier(.42, 0, .58, 1)'; // Transition plus pro
+                        io.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 }); // Déclenchement à 50% de visibilité
+            io.observe(el);
+        });
+
+        // simple role rotator - Avec une légère amélioration pour l'UX
+        const roles = ['Développeur Web & Mobile', 'Praticien Python IA & Data', "Passionné par l'UX & Tailwind"];
+        let idx = 0;
+        const roleEl = document.getElementById('role');
+
+        function updateRole() {
+            idx = (idx + 1) % roles.length;
+            roleEl.classList.remove('opacity-100');
+            roleEl.classList.add('opacity-0');
+            setTimeout(() => {
+                roleEl.textContent = roles[idx];
+                roleEl.classList.remove('opacity-0');
+                roleEl.classList.add('opacity-100');
+            }, 300); // Délai pour la transition
+        }
+
+        roleEl.classList.add('opacity-100'); // Initialisation
+        setInterval(updateRole, 4500); // Rotation toutes les 4.5 secondes
+    </script>
 
 </body>
 

@@ -112,23 +112,21 @@
                 <a href="#" class="flex items-center gap-2 text-xl font-extrabold text-accent">
                     <svg class="icon w-6 h-6 animate-spin-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2">
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                        <path
+                            d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                     </svg>
                     <span>Phanuel.dev</span>
                 </a>
             </div>
 
             <nav id="main-nav" class="hidden md:flex gap-8 items-center text-sm font-medium">
-                <a href="#about"
-                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">À propos</a>
+                <a href="#about" class="text-gray-400 hover:text-accent transition duration-200 nav-item">À propos</a>
                 <a href="#skills"
                     class="text-gray-400 hover:text-accent transition duration-200 nav-item">Compétences</a>
-                <a href="#projects"
-                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Projets</a>
+                <a href="#projects" class="text-gray-400 hover:text-accent transition duration-200 nav-item">Projets</a>
                 <a href="#experience"
                     class="text-gray-400 hover:text-accent transition duration-200 nav-item">Expérience</a>
-                <a href="#contact"
-                    class="text-gray-400 hover:text-accent transition duration-200 nav-item">Contact</a>
+                <a href="#contact" class="text-gray-400 hover:text-accent transition duration-200 nav-item">Contact</a>
             </nav>
 
             <div class="hidden md:flex items-center gap-4">
@@ -153,7 +151,8 @@
                 <button id="mobile-close" aria-label="Fermer le menu"
                     class="p-2 rounded-lg bg-dark-card hover:bg-gray-700 text-gray-200">
                     <svg class="icon w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -211,12 +210,16 @@
             <h2 class="text-3xl font-bold mb-6 text-center text-white">À propos de moi</h2>
             <div class="max-w-3xl mx-auto bg-dark-card p-6 md:p-8 rounded-xl shadow-2xl border-l-4 border-accent/70">
                 <p class="text-base text-gray-300 leading-relaxed text-justify">
-                    Développeur Web & Mobile **orienté produit**, spécialisé dans la conception de solutions digitales
-                    utiles et monétisables. J’ai travaillé sur des applications B2B et grand public, notamment une
-                    application de facturation (**EasyFact**), une plateforme d’archivage numérique et des projets
-                    intégrant l’**Intelligence Artificielle**.
-                    Mon objectif est de construire des produits adaptés aux réalités du marché africain, avec une approche
-                    pragmatique **MVP → traction → amélioration continue**.
+                    Développeur Web & Mobile orienté produit, spécialisé dans la conception de solutions digitales
+                    utiles et monétisables. J’ai travaillé sur des applications B2B et grand public, notamment des
+                    applications de facturation (EasyFact et KaldiLy), une plateforme d’archivage numérique et
+                    des projets
+                    intégrant l’Intelligence Artificielle.
+                    KaldiLy marque une étape clé dans mon évolution vers des applications
+                    professionnelles, maintenables et prêtes pour la production.
+                    Mon objectif est de construire des produits adaptés aux réalités du marché africain, avec une
+                    approche
+                    pragmatique MVP → traction → amélioration continue.
                 </p>
             </div>
             <hr class="mt-16 border-gray-700/50">
@@ -227,7 +230,21 @@
             <h2 class="text-3xl font-bold mb-10 text-center text-white">⚙️ Ma boîte à outils technique</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-                <div class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-accent/50 transition duration-300">
+                <div
+                    class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-emerald-500/50 transition duration-300">
+                    <h4 class="font-bold mb-3 text-lg text-emerald-400">Architecture & DevOps (BizFlow)</h4>
+                    <ul class="space-y-3">
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Docker / Docker Compose</span>
+                        </li>
+                        <li class="group">
+                            <span class="font-semibold text-gray-300">Architecture MVC & API REST</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div
+                    class="reveal p-5 bg-dark-card rounded-xl shadow-xl border border-gray-700 hover:border-accent/50 transition duration-300">
                     <h4 class="font-bold mb-3 text-lg text-accent">Backend & Frameworks</h4>
                     <ul class="space-y-3">
                         <li class="group">
@@ -256,7 +273,7 @@
                     <h4 class="font-bold mb-3 text-lg text-accent">Frontend & Mobile</h4>
                     <ul class="space-y-3">
                         <li class="group">
-                            <span class="font-semibold text-gray-300">JavaScript / Alpine JS (85%)</span>
+                            <span class="font-semibold text-gray-300">JavaScript / Vue JS (85%)</span>
                             <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
                                 <div class="h-full bg-accent skill-bar" data-level="85" style="width:0"></div>
                             </div>
@@ -287,7 +304,7 @@
                             </div>
                         </li>
                         <li class="group">
-                            <span class="font-semibold text-gray-300">MySQL / PostgreSQL (78%)</span>
+                            <span class="font-semibold text-gray-300">MySQL (78%)</span>
                             <div class="h-1.5 mt-1 bg-gray-700 rounded overflow-hidden">
                                 <div class="h-full bg-accent skill-bar" data-level="78" style="width:0"></div>
                             </div>
@@ -310,6 +327,34 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <article
+                    class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-emerald-500 hover:shadow-emerald-500/30 transition duration-300">
+                    <h4 class="font-extrabold text-xl text-white flex items-center gap-2">
+                        KaldiLy
+                        <span class="text-sm font-normal text-gray-400">— Application de gestion & facturation (Projet
+                            réel)</span>
+                    </h4>
+
+                    <p class="text-sm mt-3 text-gray-400">
+                        Application web professionnelle destinée aux PME pour la gestion des clients, services et
+                        factures.
+                        Le projet intègre une architecture backend robuste, une séparation claire des responsabilités et
+                        un environnement de déploiement conteneurisé.
+                    </p>
+
+                    <ul class="text-sm mt-4 text-gray-400 list-disc list-inside space-y-1">
+                        <li>API backend structurée (Laravel)</li>
+                        <li>Génération de factures PDF automatisée</li>
+                        <li>Environnement Docker (dev & prod)</li>
+                        <li>Gestion des erreurs, logs et maintenance</li>
+                    </ul>
+
+                    <p class="text-xs mt-4 text-gray-500 font-mono">
+                        Stack : Laravel, Vue.js, MySQL, Docker, wkhtmltopdf
+                    </p>
+                </article>
+
+
+                <article
                     class="reveal bg-dark-card p-6 rounded-xl shadow-2xl border-t-4 border-accent hover:shadow-accent/30 transition duration-300">
                     <h4 class="font-extrabold text-xl text-white flex items-center gap-2">EasyFact
                         <span class="text-sm font-normal text-gray-400">— Facturation Mobile</span>
@@ -319,7 +364,7 @@
                         complète des documents (factures/devis), export PDF rapide, et suivi précis des paiements.
                     </p>
                     <p class="text-xs mt-3 text-gray-500 font-mono">
-                        Stack : **Flutter**, Firebase
+                        Stack : Flutter, Firebase
                     </p>
                     <div class="mt-4 flex gap-4">
                         <a href="https://easyfact-c4315-115d6.web.app/" target="_blank"
@@ -342,7 +387,7 @@
                         ventes, produits, stocks et utilisateurs. Conçu pour l'efficacité des transactions quotidiennes.
                     </p>
                     <p class="text-xs mt-3 text-gray-500 font-mono">
-                        Stack : **Laravel**, Livewire, MySQL, Tailwind CSS
+                        Stack : Laravel, Livewire, MySQL, Tailwind CSS
                     </p>
                     <div class="mt-4 flex gap-4">
                         <a href="#" class="text-blue-500 hover:text-blue-400 font-semibold text-sm transition">Démo</a>
@@ -356,7 +401,7 @@
                     <h4 class="font-extrabold text-xl text-white">Archivage Numérique B2B</h4>
                     <p class="text-sm mt-3 text-gray-400">
                         Application web d’archivage et de gestion documentaire pour DCTC. Fonctionnalités clés :
-                        indexation avancée, recherche full-text ultra-rapide (**MeiliSearch**), et gestion granulaire
+                        indexation avancée, recherche full-text ultra-rapide (MeiliSearch), et gestion granulaire
                         des permissions.
                     </p>
                     <p class="text-xs mt-3 text-gray-500 font-mono">
@@ -369,7 +414,7 @@
                     data-sr-delay="150">
                     <h4 class="font-extrabold text-xl text-white">Plateforme de Vote Sécurisé</h4>
                     <p class="text-sm mt-3 text-gray-400">
-                        Développement d'une plateforme de vote à distance axée sur la **sécurité** et la fiabilité.
+                        Développement d'une plateforme de vote à distance axée sur la sécurité et la fiabilité.
                         Assure l'intégrité et la confidentialité des scrutins.
                     </p>
                     <p class="text-xs mt-3 text-gray-500 font-mono">
@@ -384,13 +429,14 @@
         <section id="experience" class="py-16">
             <h2 class="text-3xl font-bold mb-10 text-center text-white">💼 Parcours (Expérience & Formation)</h2>
             <div class="space-y-6">
-                <div class="bg-dark-card p-5 rounded-xl shadow-xl reveal border-l-4 border-accent/70 hover:scale-[1.01] transition duration-300">
+                <div
+                    class="bg-dark-card p-5 rounded-xl shadow-xl reveal border-l-4 border-accent/70 hover:scale-[1.01] transition duration-300">
                     <h4 class="font-semibold text-lg text-white flex justify-between items-start">
                         Stage Développeur Web <span class="text-sm text-gray-400 font-normal">Oct 2024 - Fév 2025</span>
                     </h4>
                     <p class="text-sm mt-1 text-gray-300 font-bold">Digital Communication and Technology (DCTC)</p>
                     <p class="text-sm mt-2 text-gray-400">
-                        Implémentation d'applications B2B basées sur **Laravel** et **MySQL**. Maîtrise des cycles de
+                        Implémentation d'applications B2B basées sur Laravel et MySQL. Maîtrise des cycles de
                         développement et des procédures de déploiement sécurisé.
                     </p>
                 </div>
@@ -436,7 +482,7 @@
                             d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.5h4.5V24h-4.5zM9.5 8.5h4.3v2.1h.1c.6-1 2.1-2.1 4.3-2.1 4.6 0 5.5 3 5.5 6.9V24h-4.5v-7.2c0-1.7 0-3.9-2.4-3.9-2.4 0-2.8 1.9-2.8 3.7V24H9.5z" />
                     </svg></a>
                 <a class="bg-accent text-dark-bg px-5 py-3 rounded-full font-bold hover:bg-teal-400 transition transform hover:scale-105"
-                    href="CV - AHUE KONAN PHANUEL ELIE.pdf" target="_blank">Télécharger CV</a>
+                    href="Mon CV.pdf" target="_blank">Télécharger CV</a>
             </div>
         </section>
 
@@ -447,7 +493,7 @@
         coucou 👋</a>
 
     <footer class="text-center py-6 text-sm mt-8 border-t border-gray-700/50 text-gray-500">
-        <p>© 2025 Konan Phanuel Élie Ahué - Développé avec ❤️ et <span class="text-accent">Tailwind CSS</span>.</p>
+        <p>© 2025 Konan Phanuel Élie Ahué - Développé avec <span class="text-accent">Tailwind CSS</span>.</p>
     </footer>
 
     <script>
